@@ -14,37 +14,10 @@ export const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const validate = () => {
-    const newErrors = { email: '', password: '' };
-    let isValid = true;
-
-    if (!email) {
-      newErrors.email = 'Email is required';
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email is invalid';
-      isValid = false;
-    }
-
-    if (!password) {
-      newErrors.password = 'Password is required';
-      isValid = false;
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
-  };
+  
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
-    if (!validate()) {
-      return;
-    }
-
     setIsLoading(true);
     try {
       await login(email, password);
@@ -64,6 +37,7 @@ export const Login = () => {
             <div className="bg-slate-900 p-3 rounded-xl">
               <Shirt className="w-8 h-8 text-white" />
             </div>
+            <div>Hi there</div>
           </div>
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome Back</h1>
           <p className="text-slate-600">Sign in to your StyleAI account</p>
