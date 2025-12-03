@@ -14,16 +14,17 @@ export const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await login(email, password);
-      navigate('/dashboard');
+      await login(email, password);  // from AuthContext
+      navigate("/dashboard");
     } catch (error) {
       console.error('Login failed:', error);
+      alert("Enter correct credentials")
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +38,6 @@ export const Login = () => {
             <div className="bg-slate-900 p-3 rounded-xl">
               <Shirt className="w-8 h-8 text-white" />
             </div>
-            <div>Hi there</div>
           </div>
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome Back</h1>
           <p className="text-slate-600">Sign in to your StyleAI account</p>
@@ -53,6 +53,7 @@ export const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               error={errors.email}
             />
+
 
             <Input
               type="password"

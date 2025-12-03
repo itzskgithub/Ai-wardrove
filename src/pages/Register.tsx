@@ -62,8 +62,10 @@ export const Register = () => {
 
     setIsLoading(true);
     try {
-      await register(name, email, password);
-      navigate('/dashboard');
+      await register(name,
+        email,
+        password)
+      navigate('/signin');
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {
